@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:jarvis/pallete.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,6 +85,25 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          //Descriptive Text
+          Container(
+            padding: const EdgeInsets.all(10),
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.only(
+              top: 10,
+              left: 22,
+            ),
+            child: const Text(
+              'Here are a few features',
+              style: TextStyle(
+                fontFamily: 'Cera Pro',
+                color: Pallete.mainFontColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          //Features List
         ],
       ),
     );
