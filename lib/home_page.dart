@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
+          //Virtual Assistant Picture
           Stack(
             children: [
               Center(
@@ -53,6 +54,35 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ],
+          ),
+          //Chat Bubble
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(
+              top: 30,
+            ),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Pallete.borderColor,
+              ),
+              borderRadius: BorderRadius.circular(20).copyWith(
+                topLeft: Radius.zero,
+              ),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Text(
+                'Hello, what task can I do for you?',
+                style: TextStyle(
+                  fontFamily: 'Cera Pro',
+                  fontSize: 25,
+                  color: Pallete.mainFontColor,
+                ),
+              ),
+            ),
           ),
         ],
       ),
