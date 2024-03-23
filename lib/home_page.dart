@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:jarvis/feature_box.dart';
 import 'package:jarvis/pallete.dart';
 
 class HomePage extends StatefulWidget {
@@ -104,6 +104,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           //Features List
+          const Column(
+            children: [
+              FeatureBox(
+                boxColor: Pallete.firstSuggestionBoxColor,
+                headerText: 'ChatGPT',
+                descriptionText:
+                    'A smarter way to stay organized and informed with ChatGPT',
+              ),
+              FeatureBox(
+                boxColor: Pallete.secondSuggestionBoxColor,
+                headerText: 'Dall-E',
+                descriptionText:
+                    'Get inspired and stay creative with your personal assistant powered by Dall-E',
+              ),
+              FeatureBox(
+                boxColor: Pallete.thirdSuggestionBoxColor,
+                headerText: 'Smart Voice Assistant',
+                descriptionText:
+                    'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
+              ),
+            ],
+          ),
         ],
       ),
     );
