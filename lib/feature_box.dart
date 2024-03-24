@@ -52,11 +52,14 @@ class FeatureBox extends StatelessWidget {
               padding: const EdgeInsets.only(
                 right: 20.0,
               ),
-              child: Text(
-                descriptionText,
-                style: const TextStyle(
-                  fontFamily: 'Cera Pro',
-                  color: Pallete.blackColor,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  descriptionText,
+                  style: const TextStyle(
+                    fontFamily: 'Cera Pro',
+                    color: Pallete.blackColor,
+                  ),
                 ),
               ),
             ),
