@@ -230,7 +230,9 @@ class _HomePageState extends State<HomePage> {
           }
         },
         backgroundColor: Pallete.firstSuggestionBoxColor,
-        child: const Icon(Icons.mic),
+        child: Icon(
+          speechToText.isListening ? Icons.stop_circle : Icons.mic,
+        ),
       ),
     );
   }
