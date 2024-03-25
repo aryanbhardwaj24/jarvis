@@ -18,6 +18,8 @@ class _HomePageState extends State<HomePage> {
   String lastWords = '';
   final OpenAIService openAIService = OpenAIService();
   FlutterTts flutterTts = FlutterTts();
+  String? generatedContent;
+  String? generatedImageUrl;
 
   @override
   void initState() {
@@ -127,13 +129,15 @@ class _HomePageState extends State<HomePage> {
                   topLeft: Radius.zero,
                 ),
               ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Text(
-                  'Hello, what task can I do for you?',
+                  generatedContent == null
+                      ? 'Hello, what task can I do for you?'
+                      : generatedContent!,
                   style: TextStyle(
                     fontFamily: 'Cera Pro',
-                    fontSize: 25,
+                    fontSize: generatedContent == null ? 25 : 18,
                     color: Pallete.mainFontColor,
                   ),
                 ),
@@ -189,7 +193,18 @@ class _HomePageState extends State<HomePage> {
             await startListening();
           } else if (speechToText.isListening) {
             final speech = await openAIService.isArtPromptAPI(lastWords);
-            await systemSpeak(speech);
+
+            if (speech.contains('https')) {
+              generatedImageUrl = speech;
+              generatedContent = null;
+              setState(() {});
+            } else {
+              generatedImageUrl = null;
+              generatedContent = speech;
+              setState(() {});
+              await systemSpeak(speech);
+            }
+
             await stopListening();
           } else {
             initSpeechToText();
