@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:jarvis/feature_box.dart';
 import 'package:jarvis/openai_service.dart';
 import 'package:jarvis/pallete.dart';
@@ -16,11 +17,18 @@ class _HomePageState extends State<HomePage> {
   final speechToText = SpeechToText();
   String lastWords = '';
   final OpenAIService openAIService = OpenAIService();
+  FlutterTts flutterTts = FlutterTts();
 
   @override
   void initState() {
     super.initState();
     initSpeechToText();
+    initTextToSpeech();
+  }
+
+  Future<void> initTextToSpeech() async {
+    await flutterTts.setSharedInstance(true);
+    setState(() {});
   }
 
   Future<void> initSpeechToText() async {
@@ -44,10 +52,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  Future<void> systemSpeak(String content) async {
+    await flutterTts.speak(content);
+  }
+
   @override
   void dispose() {
     super.dispose();
     speechToText.stop();
+    flutterTts.stop();
   }
 
   @override
@@ -176,7 +189,7 @@ class _HomePageState extends State<HomePage> {
             await startListening();
           } else if (speechToText.isListening) {
             final speech = await openAIService.isArtPromptAPI(lastWords);
-            print(speech);
+            await systemSpeak(speech);
             await stopListening();
           } else {
             initSpeechToText();
